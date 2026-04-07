@@ -39,7 +39,10 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // Enable CORS
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL || '*',
+    credentials: true
+}));
 
 // Set static folder
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
