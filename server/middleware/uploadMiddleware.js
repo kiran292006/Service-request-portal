@@ -1,10 +1,16 @@
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+
+const uploadDir = 'uploads/requests';
 
 // Set storage engine
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/requests');
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        cb(null, uploadDir);
     },
     filename: function (req, file, cb) {
         // Sanitize filename by replacing spaces and special characters with underscores
