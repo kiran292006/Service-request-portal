@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import useRequests from '../hooks/useRequests';
 import { StatusBadge, PriorityBadge } from './RequestTable';
+import { API_BASE_URL } from '../services/api';
 import {
     MoreVertical,
     MessageSquare,
@@ -140,7 +141,7 @@ const KanbanBoard = ({ requests = [], isLoading }) => {
                                                                     overflow: 'hidden'
                                                                 }}>
                                                                     <img
-                                                                        src={`http://localhost:5000/uploads/requests/${req.image.split(/[\\/]/).pop()}`}
+                                                                        src={`${API_BASE_URL}/uploads/requests/${req.image.split(/[\\/]/).pop()}`}
                                                                         alt=""
                                                                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                                                         onError={(e) => { e.target.style.display = 'none'; }}

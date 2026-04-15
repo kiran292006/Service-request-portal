@@ -4,6 +4,7 @@ import { Clock, ArrowRight, Trash2, Paperclip, FileText } from 'lucide-react';
 import { TableSkeleton } from './Skeletons';
 import { useAuth } from '../context/AuthContext';
 import useRequests from '../hooks/useRequests';
+import { API_BASE_URL } from '../services/api';
 
 /* ── Badge Components ────────────────────────────────────── */
 export const StatusBadge = ({ status }) => {
@@ -124,7 +125,7 @@ const RequestTable = ({ requests, loading }) => {
                                                 backgroundColor: 'white', flexShrink: 0
                                             }}>
                                                 <img
-                                                    src={`http://localhost:5000/uploads/requests/${req.image.split(/[\\/]/).pop()}`}
+                                                    src={`${API_BASE_URL}/uploads/requests/${req.image.split(/[\\/]/).pop()}`}
                                                     alt=""
                                                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                                     onError={(e) => { e.target.style.display = 'none'; }}

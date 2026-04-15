@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from '../services/api';
+import api, { API_BASE_URL } from '../services/api';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
     LayoutDashboard, Activity, AlertTriangle, CheckCircle2,
@@ -194,7 +194,7 @@ const ManagerDashboard = () => {
                                                         </div>
                                                     ) : (
                                                         <img
-                                                            src={`http://localhost:5000/uploads/requests/${ticket.image.split(/[\\/]/).pop()}`}
+                                                            src={`${API_BASE_URL}/uploads/requests/${ticket.image.split(/[\\/]/).pop()}`}
                                                             alt=""
                                                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                                             onError={(e) => { e.target.style.display = 'none'; }}

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, createContext, useCallback } from 'react';
 import { io } from 'socket.io-client';
 import { useAuth } from './AuthContext';
-import api from '../services/api';
+import api, { API_BASE_URL } from '../services/api';
 
 const NotificationContext = createContext();
 
@@ -30,7 +30,7 @@ export const NotificationProvider = ({ children }) => {
         fetchNotifications();
 
         let active = true;
-        const newSocket = io('http://localhost:5000', {
+        const newSocket = io(API_BASE_URL, {
             autoConnect: false,
             reconnection: true,
             reconnectionAttempts: 5,

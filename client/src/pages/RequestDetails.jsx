@@ -4,7 +4,7 @@ import useRequests from '../hooks/useRequests';
 import { useAuth } from '../context/AuthContext';
 import { useNotifications } from '../context/NotificationContext';
 import { StatusBadge, PriorityBadge } from '../components/RequestTable';
-import api from '../services/api';
+import api, { API_BASE_URL } from '../services/api';
 import {
     ArrowLeft, Calendar, User, Paperclip, FileText, ChevronDown,
     Trash2, Tag, Clock, CheckCircle2, Circle, XCircle, ExternalLink,
@@ -249,7 +249,7 @@ const RequestDetails = () => {
     if (requestLoading) return <DetailsSkeleton />;
     if (!request) return <div className="text-center py-5">Request not found.</div>;
 
-    const fileUrl = request.image ? `http://localhost:5000/uploads/requests/${request.image.split(/[\\/]/).pop()}` : null;
+    const fileUrl = request.image ? `${API_BASE_URL}/uploads/requests/${request.image.split(/[\\/]/).pop()}` : null;
     const isPdf = request.image?.toLowerCase().endsWith('.pdf');
 
     const availableStatuses = getAvailableStatuses();
